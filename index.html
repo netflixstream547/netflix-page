@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chargement Netflix...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .loader { text-align: center; color: #fff; }
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            color: #E50914;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #333;
+            border-top: 5px solid #E50914;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        .text { font-size: 1.2em; color: #999; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none; display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loaderScreen" class="loader">
+        <div class="logo">NETFLIX</div>
+        <div class="spinner"></div>
+        <div class="text">Préparation de votre session...</div>
+    </div>
+    <iframe id="netflixFrame" allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+
+    <script>
+        const COOKIES = [
+            "nfvdid=BQFmAAEBEIa_qgL7mulB-ssAVMiOSe9gkArslWM2CuE486_KSBNhZSOAvCHI5LRzr28UFAhFmix3sUvRrQOV6Bw_BtFQP9vO0UO57EXjAjoXYqHGvL5MqiRdAsJXvU_mQ9-j3rqtAOKzGp4qfqg0TYN8Lxd6DGdc",
+            "NetflixId=ct%3DBgjHlOvcAxKiA4ytutGCZQ0bC3Nozscyb5Ez2Hfqu4pZESfKmR-uC9lLRNNe0YogbGg2kHPZRo5eru5ldYhYCOmaSPurTYMZbnRlBqIQHaJV6-nImrUD0ft5CDlm_BgqHpwP7Th_XSHCYzCq2FYmAp4SYVbi2m423mkBqMxb6rZ2_mUEhQboBP9NOv2HAlHbQztYet2FuOrOrDpv8ztqFlR9Yv4d6sui-IJiObLfDTRtKUFVRnHgFnxQg-37V-q8Wg6xmidjK3_hafujyCUvJxvoJIYHvg2ZfFNJjOt2FPWd0BeQG2D2prMIaQpBabm1eve3X6k9r-8A7cTIWRXuUQXjVH_5cdiNASQA1C8Me7ZaVKhKdtWCgw8qEQqa11Oi0ykohjdmS3WL0T45D3t2mW7sSRjl7kjKEA7lYbd3vGRu5KQV1f_sEcaQKwtDFsHCRtrY_Z4iNGNRp-MS2TOA-xox-q5g9f8peYh3BOpnjlEjn9eGPgmn6FLTsqWISU9uftFoBglYdQeSVr_94hFMu_dK8DzTz9HxSew83nQB4tubYU1gOBu31tkDZyYYBiIOCgyS6s_rQemBgiJiLRI.%26ch%3DAQEAEAABABRjc2tsYzkBO2Dk2nz1c7HWCLxY8iSWQ2o.%26v%3D3%26pg%3DO7OGJBIG7BCWDNVU6VTR5C5OXI",
+            "SecureNetflixId=v%3D3%26mac%3DAQEAEQABABQ1wmdQ0kMRP8yMX3Ks5INJek9SSpRbgAY.%26dt%3D1772032676386",
+            "gsid=fbafaa5d-01fd-47f3-89a6-440f2f3c6590",
+            "flwssn=babb5ecc-2c04-4514-9385-6ba1207279cc",
+            "OptanonConsent=isGpcEnabled=0&datestamp=Wed+Feb+25+2026+10%3A40%3A03+GMT-0500+(hora+est%C3%A1ndar+de+Per%C3%BA)&version=202601.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=9ee5a72a-2dd8-48a3-b831-8e9f527b5924&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&crTime=1771081744322&AwaitingReconsent=false",
+            "netflix-sans-bold-3-loaded=true",
+            "netflix-sans-normal-3-loaded=true",
+            "profilesNewSession=0"
+        ];
+
+        function injectCookies() {
+            COOKIES.forEach(cookieString => {
+                document.cookie = cookieString + "; domain=.netflix.com; path=/; secure; SameSite=None";
+            });
+        }
+
+        async function initNetflix() {
+            injectCookies();
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            document.getElementById('loaderScreen').style.display = 'none';
+            window.location.href = "https://www.netflix.com/browse";
+        }
+
+        initNetflix();
+    </script>
+</body>
+</html>
