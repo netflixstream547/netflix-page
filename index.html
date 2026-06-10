@@ -3,221 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix - Accès</title>
+    <title>Netflix - Connexion</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            background: #000;
-            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            font-family: 'Segoe UI', Arial, sans-serif;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             padding: 20px;
         }
-        
-        .container {
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        /* Logo */
-        .logo {
+
+        .page {
             text-align: center;
-            margin-bottom: 50px;
+            width: 100%;
+            max-width: 420px;
         }
-        .logo span {
+
+        /* LOGO */
+        .logo {
+            font-size: 60px;
+            font-weight: 900;
             color: #E50914;
-            font-size: 70px;
-            font-weight: bold;
-            letter-spacing: 8px;
+            letter-spacing: 10px;
+            margin-bottom: 60px;
         }
-        
-        /* Bloc code */
-        .code-block {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
+
+        /* CARTE CODE */
+        .box {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
+            padding: 30px 25px;
+            margin-bottom: 15px;
         }
-        .code-block label {
-            color: #ccc;
-            font-size: 14px;
-            display: block;
+
+        .box .icon {
+            font-size: 30px;
             margin-bottom: 10px;
         }
-        .code-block input {
+
+        .box label {
+            display: block;
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .box input {
             width: 100%;
-            padding: 14px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 6px;
+            padding: 14px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #2a2a2a;
             color: white;
-            font-size: 18px;
+            font-size: 22px;
             text-align: center;
-            letter-spacing: 3px;
+            letter-spacing: 6px;
             outline: none;
+            margin-bottom: 18px;
+            font-weight: 500;
         }
-        .code-block input:focus {
-            border-color: #E50914;
+
+        .box input:focus {
+            border-bottom-color: #E50914;
         }
-        .code-block button {
+
+        .box input::placeholder {
+            color: #3a3a3a;
+            letter-spacing: 2px;
+            font-size: 15px;
+        }
+
+        .box button {
             width: 100%;
             padding: 14px;
             background: #E50914;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 17px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 12px;
+            letter-spacing: 1px;
+            transition: background 0.2s;
         }
-        .code-block button:hover {
-            background: #c70812;
+
+        .box button:hover {
+            background: #b20710;
         }
+
         #msg {
-            margin-top: 12px;
+            margin-top: 14px;
             font-size: 13px;
-            text-align: center;
+            font-weight: 500;
         }
         .success { color: #46d369; }
         .error { color: #e87c03; }
-        .loading { color: #aaa; }
-        
-        /* Bloc Discord */
-        .discord-block {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 8px;
+        .loading { color: #777; }
+
+        /* CARTE DISCORD */
+        .discord-box {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
             padding: 25px;
             text-align: center;
         }
-        .discord-block p {
-            color: #aaa;
-            font-size: 14px;
+
+        .discord-box .big-text {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
             margin-bottom: 5px;
         }
-        .discord-block h3 {
-            color: white;
-            font-size: 17px;
+
+        .discord-box .small-text {
+            color: #777;
+            font-size: 13px;
             margin-bottom: 15px;
         }
-        .discord-btn {
+
+        .discord-box a {
             display: inline-block;
             background: #5865F2;
             color: white;
-            padding: 14px 30px;
-            border-radius: 6px;
+            padding: 13px 28px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 15px;
             transition: background 0.2s;
         }
-        .discord-btn:hover {
+
+        .discord-box a:hover {
             background: #4752c4;
         }
-        
+
         .footer {
-            text-align: center;
-            color: #444;
+            color: #333;
             font-size: 11px;
-            margin-top: 25px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        
-        <!-- Logo -->
-        <div class="logo">
-            <span>NETFLIX</span>
-        </div>
-        
-        <!-- Code -->
-        <div class="code-block">
-            <label>🔑 Code d'accès</label>
-            <input type="text" id="codeInput" placeholder="Entrez votre code" maxlength="12" autocomplete="off">
-            <button onclick="connect()">Se connecter</button>
-            <div id="msg"></div>
-        </div>
-        
-        <!-- Discord -->
-        <div class="discord-block">
-            <p>Pas encore de code ?</p>
-            <h3>Rejoins notre Discord</h3>
-            <a href="https://discord.gg/TON_LIEN" target="_blank" class="discord-btn">
-                💬 Accéder au serveur
-            </a>
-        </div>
-        
-        <div class="footer">
-            TON_NOM © 2026
-        </div>
-        
+
+<div class="page">
+
+    <div class="logo">NETFLIX</div>
+
+    <!-- CODE -->
+    <div class="box">
+        <div class="icon">🔐</div>
+        <label>Code d'accès</label>
+        <input type="text" id="codeInput" placeholder="••••••••••••" maxlength="12" autocomplete="off">
+        <button onclick="connect()">Accéder à Netflix</button>
+        <div id="msg"></div>
     </div>
 
-    <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var urlCode = urlParams.get('code');
-        if (urlCode) {
-            document.getElementById('codeInput').value = urlCode;
-            setTimeout(connect, 500);
+    <!-- DISCORD -->
+    <div class="discord-box">
+        <div class="big-text">Pas de code ?</div>
+        <div class="small-text">Rejoins notre serveur Discord pour obtenir ton accès</div>
+        <a href="https://discord.gg/TON_LIEN" target="_blank">💬 Rejoindre le Discord</a>
+    </div>
+
+    <div class="footer">TON_NOM</div>
+
+</div>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlCode = urlParams.get('code');
+    if (urlCode) {
+        document.getElementById('codeInput').value = urlCode;
+        setTimeout(connect, 500);
+    }
+
+    async function connect() {
+        var code = document.getElementById('codeInput').value.trim();
+        var msg = document.getElementById('msg');
+
+        if (!code) {
+            msg.className = 'error';
+            msg.textContent = 'Entre un code';
+            return;
         }
-        
-        async function connect() {
-            var code = document.getElementById('codeInput').value.trim();
-            var msg = document.getElementById('msg');
-            
-            if (!code) {
+
+        msg.className = 'loading';
+        msg.textContent = 'Vérification...';
+
+        try {
+            var resp = await fetch('https://netflix-api-hm3u.onrender.com/api/get-cookies?code=' + code);
+            var data = await resp.json();
+
+            if (!data.success) {
                 msg.className = 'error';
-                msg.textContent = 'Veuillez entrer un code';
+                if (data.error.includes('déjà utilisé')) msg.textContent = 'Code déjà utilisé';
+                else if (data.error.includes('expiré')) msg.textContent = 'Code expiré, refais /start';
+                else if (data.error.includes('autre connexion')) msg.textContent = 'Code lié à un autre appareil';
+                else msg.textContent = data.error;
                 return;
             }
-            
-            msg.className = 'loading';
-            msg.textContent = 'Vérification...';
-            
-            try {
-                var resp = await fetch('https://netflix-api-hm3u.onrender.com/api/get-cookies?code=' + code);
-                var data = await resp.json();
-                
-                if (!data.success) {
-                    msg.className = 'error';
-                    if (data.error.includes('déjà utilisé')) {
-                        msg.textContent = 'Code déjà utilisé';
-                    } else if (data.error.includes('expiré')) {
-                        msg.textContent = 'Code expiré, refaites /start';
-                    } else if (data.error.includes('autre connexion')) {
-                        msg.textContent = 'Code lié à un autre appareil';
-                    } else {
-                        msg.textContent = data.error;
-                    }
-                    return;
-                }
-                
-                data.cookies.forEach(function(c) {
-                    document.cookie = c.name + '=' + c.value + '; domain=.netflix.com; path=/; secure; SameSite=None';
-                });
-                
-                msg.className = 'success';
-                msg.textContent = 'Connecté ! Redirection...';
-                
-                setTimeout(function() {
-                    window.location.href = 'https://www.netflix.com/browse';
-                }, 1500);
-                
-            } catch(e) {
-                msg.className = 'error';
-                msg.textContent = 'Erreur, réessayez';
-            }
+
+            data.cookies.forEach(function(c) {
+                document.cookie = c.name + '=' + c.value + '; domain=.netflix.com; path=/; secure; SameSite=None';
+            });
+
+            msg.className = 'success';
+            msg.textContent = 'Connecté ! Redirection...';
+
+            setTimeout(function() {
+                window.location.href = 'https://www.netflix.com/browse';
+            }, 1500);
+
+        } catch(e) {
+            msg.className = 'error';
+            msg.textContent = 'Erreur serveur';
         }
-        
-        document.getElementById('codeInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') connect();
-        });
-    </script>
+    }
+
+    document.getElementById('codeInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') connect();
+    });
+</script>
+
 </body>
 </html>
