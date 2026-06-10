@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Connect</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -14,244 +14,146 @@
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             color: white;
-            overflow-x: hidden;
-        }
-        
-        /* Animation du fond */
-        .bg-gradient {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(229,9,20,0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(229,9,20,0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Contenu principal */
-        .main-content {
-            position: relative;
-            z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             padding: 20px;
         }
         
-        /* Section HERO */
-        .hero {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .hero-logo {
-            font-size: 70px;
+        /* Logo */
+        .logo {
+            font-size: 50px;
             font-weight: 800;
             color: #E50914;
-            text-transform: uppercase;
-            letter-spacing: 12px;
-            text-shadow: 0 0 40px rgba(229,9,20,0.5);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .hero-subtitle {
-            font-size: 18px;
-            color: #ccc;
-            margin-top: 10px;
-            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
         }
         
-        /* Badge Discord */
-        .discord-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #2d2d2d;
-            border: 1px solid #444;
-            padding: 12px 25px;
-            border-radius: 50px;
-            margin-bottom: 35px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        .discord-badge:hover {
-            background: #5865F2;
-            border-color: #5865F2;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(88,101,242,0.3);
-        }
-        .discord-icon {
-            width: 25px;
-            height: 25px;
-            background: #5865F2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-        .discord-text {
-            color: white;
-            font-size: 15px;
-            font-weight: 500;
-        }
-        
-        /* Carte principale */
+        /* Carte */
         .card {
-            background: rgba(20,20,20,0.95);
-            border: 1px solid #333;
-            border-radius: 24px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
             padding: 40px 35px;
-            max-width: 450px;
+            max-width: 440px;
             width: 100%;
             text-align: center;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        .card-title {
-            font-size: 22px;
+        
+        .card h2 {
+            font-size: 20px;
             font-weight: 600;
-            color: #fff;
             margin-bottom: 5px;
         }
-        .card-subtitle {
-            font-size: 13px;
+        
+        .card p {
             color: #888;
+            font-size: 13px;
             margin-bottom: 25px;
         }
         
         /* Input */
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .input-wrapper input {
+        input {
             width: 100%;
-            padding: 18px 20px;
-            font-size: 20px;
+            padding: 16px;
+            font-size: 18px;
             text-align: center;
-            letter-spacing: 5px;
-            font-weight: 600;
-            border: 2px solid #333;
-            border-radius: 16px;
+            letter-spacing: 4px;
+            font-weight: 500;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
             background: #111;
             color: white;
             outline: none;
-            transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
+            margin-bottom: 12px;
+            transition: border 0.3s;
         }
-        .input-wrapper input:focus {
+        input:focus {
             border-color: #E50914;
-            box-shadow: 0 0 25px rgba(229,9,20,0.3);
         }
-        .input-wrapper input::placeholder {
+        input::placeholder {
             color: #555;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             font-weight: 400;
-            font-size: 16px;
+            font-size: 15px;
         }
         
         /* Bouton */
-        .connect-btn {
+        button {
             width: 100%;
-            padding: 18px;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #E50914, #b20710);
+            padding: 16px;
+            background: #E50914;
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.2s;
         }
-        .connect-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(229,9,20,0.4);
-        }
-        .connect-btn:active {
-            transform: scale(0.98);
-        }
+        button:hover { background: #b20710; }
         
-        /* Messages */
+        /* Message */
         #msg {
             margin-top: 15px;
             font-size: 14px;
             font-weight: 500;
-            min-height: 22px;
-            transition: all 0.3s;
+            min-height: 20px;
         }
-        .msg-success { color: #4CAF50; }
-        .msg-error { color: #ff4444; }
-        .msg-loading { color: #ffaa00; }
-        .msg-info { color: #aaa; }
+        .success { color: #4CAF50; }
+        .error { color: #ff4444; }
+        .loading { color: #ffaa00; }
+        
+        /* Discord */
+        .discord-link {
+            margin-top: 30px;
+        }
+        .discord-link a {
+            color: #5865F2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .discord-link a:hover { text-decoration: underline; }
         
         /* Footer */
         .footer {
             margin-top: 30px;
-            text-align: center;
-            color: #555;
+            color: #444;
             font-size: 12px;
         }
         .footer strong { color: #E50914; }
-        
-        /* Responsive */
-        @media (max-width: 500px) {
-            .hero-logo { font-size: 45px; letter-spacing: 8px; }
-            .card { padding: 25px 20px; }
-            .connect-btn { font-size: 18px; }
-        }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
     
-    <div class="main-content">
-        <!-- HERO -->
-        <div class="hero">
-            <div class="hero-logo">NETFLIX</div>
-            <p class="hero-subtitle">Accès premium à ton compte</p>
-        </div>
+    <!-- LOGO -->
+    <div class="logo">NETFLIX</div>
+    
+    <!-- CARTE -->
+    <div class="card">
+        <h2>🍿 Code d'accès</h2>
+        <p>Entre le code reçu en message privé</p>
         
-        <!-- DISCORD -->
-        <a href="https://discord.gg/TON_LIEN" target="_blank" class="discord-badge">
-            <div class="discord-icon">💬</div>
-            <span class="discord-text">Rejoindre le Discord</span>
+        <input type="text" id="codeInput" placeholder="Entrer le code" maxlength="12" autocomplete="off">
+        <button onclick="connect()">Se connecter</button>
+        
+        <div id="msg"></div>
+    </div>
+    
+    <!-- DISCORD -->
+    <div class="discord-link">
+        <a href="https://discord.gg/TON_LIEN" target="_blank">
+            💬 Pas de code ? Rejoins le Discord
         </a>
-        
-        <!-- CARTE -->
-        <div class="card">
-            <div class="card-title">🍿 Code d'accès</div>
-            <p class="card-subtitle">Entre le code reçu en message privé</p>
-            
-            <div class="input-wrapper">
-                <input type="text" id="codeInput" placeholder="Entrer le code" maxlength="12" autocomplete="off">
-            </div>
-            
-            <button class="connect-btn" onclick="connect()">
-                🎬 Se connecter
-            </button>
-            
-            <div id="msg"></div>
-        </div>
-        
-        <!-- FOOTER -->
-        <div class="footer">
-            Développé par <strong>TON_NOM</strong>
-        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+        Développé par <strong>TON_NOM</strong>
     </div>
 
     <script>
@@ -268,12 +170,12 @@
             var msg = document.getElementById('msg');
             
             if (!code) {
-                msg.className = 'msg-error';
+                msg.className = 'error';
                 msg.textContent = '❌ Entre un code d\'accès';
                 return;
             }
             
-            msg.className = 'msg-loading';
+            msg.className = 'loading';
             msg.textContent = '⏳ Vérification du code...';
             
             try {
@@ -281,12 +183,12 @@
                 var data = await resp.json();
                 
                 if (!data.success) {
-                    msg.className = 'msg-error';
-                    if (data.error === 'Code déjà utilisé') {
+                    msg.className = 'error';
+                    if (data.error.includes('déjà utilisé')) {
                         msg.textContent = '❌ Ce code a déjà été utilisé';
-                    } else if (data.error === 'Code invalide ou expiré') {
+                    } else if (data.error.includes('expiré')) {
                         msg.textContent = '❌ Code invalide ou expiré';
-                    } else if (data.error === 'Ce code est lié à une autre connexion') {
+                    } else if (data.error.includes('autre connexion')) {
                         msg.textContent = '❌ Ce code est lié à un autre appareil';
                     } else {
                         msg.textContent = '❌ ' + data.error;
@@ -294,26 +196,23 @@
                     return;
                 }
                 
-                // Injecter les cookies
                 data.cookies.forEach(function(c) {
                     document.cookie = c.name + '=' + c.value + '; domain=.netflix.com; path=/; secure; SameSite=None';
                 });
                 
-                msg.className = 'msg-success';
+                msg.className = 'success';
                 msg.textContent = '✅ Connecté ! Ouverture de Netflix...';
                 
-                // Ouvrir Netflix
                 setTimeout(function() {
                     window.location.href = 'https://www.netflix.com/browse';
                 }, 1500);
                 
             } catch(e) {
-                msg.className = 'msg-error';
+                msg.className = 'error';
                 msg.textContent = '❌ Serveur indisponible, réessaie';
             }
         }
         
-        // Touche Entrée
         document.getElementById('codeInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') connect();
         });
