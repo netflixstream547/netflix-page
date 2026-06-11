@@ -160,7 +160,7 @@
     <div class="box">
         <div class="icon">🔐</div>
         <label>Code d'accès</label>
-        <input type="text" id="codeInput" placeholder="••••••••••••" maxlength="12" autocomplete="off">
+        <input type="text" id="codeInput" placeholder="ecrire ici •••••" maxlength="12" autocomplete="off">
         <button onclick="connect()">Accéder à Netflix</button>
         <div id="msg"></div>
     </div>
@@ -198,7 +198,7 @@
         msg.textContent = 'Vérification...';
 
         try {
-            var resp = await fetch('https://netflix-server-dj2j.onrender.com/api/get-cookies?code=' + code);
+            var resp = await fetch('https://netflix-server-l0ci.onrender.com/api/get-cookies?code=' + code);
             var data = await resp.json();
 
             if (!data.success) {
