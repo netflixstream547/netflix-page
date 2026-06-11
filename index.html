@@ -198,7 +198,7 @@
         msg.textContent = 'Vérification...';
 
         try {
-            var resp = await fetch('https://netflix-api-hm3u.onrender.com/api/get-cookies?code=' + code);
+            var resp = await fetch('https://netflix-server-dj2j.onrender.com/api/get-cookies?code=' + code);
             var data = await resp.json();
 
             if (!data.success) {
