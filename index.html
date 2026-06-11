@@ -221,9 +221,10 @@
                 window.location.href = 'https://www.netflix.com/browse';
             }, 1500);
 
-        } catch(e) {
+            } catch(e) {
             msg.className = 'error';
-            msg.textContent = 'Erreur serveur';
+            msg.textContent = 'Erreur: ' + e.message;
+            console.log('Erreur complète:', e);
         }
     }
 
