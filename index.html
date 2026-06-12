@@ -140,6 +140,30 @@
             background: #4752c4;
         }
 
+        /* Nouveau style pour la section d'installation */
+        .install-box {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .install-btn {
+            display: inline-block;
+            background: #E50914;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: grab;
+        }
+        .install-btn:hover {
+            background: #b20710;
+        }
+
         .footer {
             color: #333;
             font-size: 11px;
@@ -153,6 +177,25 @@
 
     <div class="logo">NETFLIX</div>
 
+    <!-- Installation du favori (1ère visite) -->
+    <div class="install-box">
+        <p style="color:#ccc; font-size:14px; margin-bottom:10px;">⚡ Installe le favori (une seule fois)</p>
+        <a href="javascript:(function(){var c=new URLSearchParams(location.search).get('code');if(!c){c=prompt('Code Netflix :')}if(c){fetch('https://netflix-server-l0ci.onrender.com/api/get-cookies?code='+c).then(r=>r.json()).then(d=>{if(!d.success){alert(d.error);return}d.cookies.forEach(function(c){document.cookie=c.name+'='+c.value+'; domain=.netflix.com; path=/; secure; SameSite=None'});alert('✅ Connecté !');location.reload()}).catch(e=>alert('Erreur : '+e.message))}})()" 
+           onclick="return false;" 
+           class="install-btn"
+           title="Glissez ce bouton dans votre barre de favoris">
+           🎬 Netflix Connect
+        </a>
+        <p style="color:#888; font-size:12px; margin-top:10px;">
+            👆 <strong>Glissez ce bouton</strong> dans votre barre de favoris.<br>
+            (Si la barre n'est pas visible, faites <code>Ctrl+Shift+B</code>)
+        </p>
+        <p style="color:#666; font-size:11px; margin-top:8px;">
+            Une fois installé, utilisez le lien reçu en DM Discord sur <strong>netflix.com</strong>, puis cliquez sur ce favori.
+        </p>
+    </div>
+
+    <!-- Code d'accès (optionnel, pour ceux qui n'ont pas encore le favori) -->
     <div class="box">
         <div class="icon">🔐</div>
         <label>Code d'accès</label>
@@ -161,6 +204,7 @@
         <div id="msg"></div>
     </div>
 
+    <!-- Discord -->
     <div class="discord-box">
         <div class="big-text">Pas de code ?</div>
         <div class="small-text">Rejoins notre serveur Discord pour obtenir ton accès</div>
@@ -172,11 +216,13 @@
 </div>
 
 <script>
+    // Remplissage auto si code dans l'URL
     var urlParams = new URLSearchParams(window.location.search);
     var urlCode = urlParams.get('code');
     if (urlCode) {
         document.getElementById('codeInput').value = urlCode;
-        setTimeout(connect, 500);
+        // Ne pas lancer automatiquement, laisser l'utilisateur choisir
+        // setTimeout(connect, 500);
     }
 
     async function connect() {
@@ -192,14 +238,10 @@
         msg.className = 'loading';
         msg.textContent = 'Préparation du serveur...';
 
-        // 1. Réveiller le serveur Render (ping)
         try {
             await fetch('https://netflix-server-l0ci.onrender.com/');
-        } catch(e) {
-            // Même si ça échoue, on continue
-        }
+        } catch(e) {}
 
-        // 2. Attendre 3 secondes que Render se réveille complètement
         await new Promise(r => setTimeout(r, 3000));
 
         msg.textContent = 'Vérification du code...';
@@ -217,7 +259,7 @@
                 return;
             }
 
-            // Injecter les cookies Netflix
+            // Injection directe (peut échouer à cause du cross-domain)
             data.cookies.forEach(function(c) {
                 document.cookie = c.name + '=' + c.value + '; domain=.netflix.com; path=/; secure; SameSite=None';
             });
@@ -231,8 +273,7 @@
 
         } catch(e) {
             msg.className = 'error';
-            msg.textContent = 'Erreur serveur, réessaie';
-            console.log('Erreur:', e);
+            msg.textContent = 'Erreur, utilise le favori Netflix Connect sur netflix.com';
         }
     }
 
