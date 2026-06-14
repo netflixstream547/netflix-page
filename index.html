@@ -1,220 +1,434 @@
-<!-- SECTION VIDÉO -->
-<section class="video-section">
-    <div class="section-header">
-        <h2>🎬 شاهد الشرح في دقيقتين</h2>
-        <p>فيديو توضيحي يشرح كل الخطوات بالتفصيل</p>
-    </div>
-    
-    <div class="video-container">
-        <!-- Bordure lumineuse animée -->
-        <div class="video-glow"></div>
-        
-        <!-- Cadre vidéo -->
-        <div class="video-frame">
-            <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()">
-                <div class="play-icon">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="white">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </div>
-                <p>اضغط للمشاهدة</p>
-            </div>
-            
-            <!-- remplacer VIDEO_ID par ta vraie vidéo -->
-            <iframe id="videoIframe" 
-                    src="" 
-                    data-src="https://www.youtube.com/embed/TA_VIDEO_ID?autoplay=1&rel=0" 
-                    frameborder="0" 
-                    allow="autoplay; encrypted-media" 
-                    allowfullscreen 
-                    style="display:none;">
-            </iframe>
-        </div>
-    </div>
-    
-    <!-- Mini-étapes rapides sous la vidéo -->
-    <div class="quick-steps">
-        <div class="quick-step">
-            <span class="qs-icon">1️⃣</span>
-            <span>ثبّت الإضافة</span>
-        </div>
-        <div class="quick-step">
-            <span class="qs-icon">2️⃣</span>
-            <span>انضم لـ Discord</span>
-        </div>
-        <div class="quick-step">
-            <span class="qs-icon">3️⃣</span>
-            <span>أدخل الكود</span>
-        </div>
-        <div class="quick-step">
-            <span class="qs-icon">4️⃣</span>
-            <span>شاهد Netflix 🍿</span>
-        </div>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Connexion</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<!-- CSS pour la section vidéo -->
-<style>
-    .video-section {
-        max-width: 900px;
-        margin: 60px auto;
-        padding: 0 20px;
-    }
-    
-    .section-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .section-header h2 {
-        font-size: 28px;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 8px;
-    }
-    
-    .section-header p {
-        color: #888;
-        font-size: 16px;
-    }
-    
-    .video-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        border-radius: 16px;
-        overflow: hidden;
-        background: #0a0a0a;
-    }
-    
-    /* Effet de lueur animée autour de la vidéo */
-    .video-glow {
-        position: absolute;
-        inset: -3px;
-        border-radius: 18px;
-        background: linear-gradient(45deg, #E50914, transparent, #E50914, transparent);
-        background-size: 400% 400%;
-        animation: glowMove 3s ease-in-out infinite;
-        z-index: 0;
-        opacity: 0.5;
-    }
-    
-    @keyframes glowMove {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    
-    .video-frame {
-        position: relative;
-        z-index: 1;
-        aspect-ratio: 16/9;
-        background: #000;
-        border-radius: 14px;
-        overflow: hidden;
-    }
-    
-    .video-frame iframe {
-        width: 100%;
-        height: 100%;
-    }
-    
-    /* Placeholder avec bouton play */
-    .video-placeholder {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(180deg, #111 0%, #000 100%);
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    
-    .video-placeholder:hover {
-        background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
-    }
-    
-    .video-placeholder:hover .play-icon {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.6));
-    }
-    
-    .play-icon {
-        transition: 0.3s;
-        margin-bottom: 15px;
-    }
-    
-    .video-placeholder p {
-        color: #888;
-        font-size: 14px;
-    }
-    
-    /* Étapes rapides */
-    .quick-steps {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-top: 25px;
-    }
-    
-    .quick-step {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: #111;
-        border: 1px solid #222;
-        border-radius: 50px;
-        padding: 10px 20px;
-        font-size: 14px;
-        color: #ccc;
-        transition: 0.3s;
-    }
-    
-    .quick-step:hover {
-        border-color: #E50914;
-        transform: translateY(-2px);
-    }
-    
-    .qs-icon {
-        font-size: 18px;
-    }
-    
-    /* Responsive */
-    @media (max-width: 600px) {
-        .section-header h2 {
+        body {          
+            background: #0a0a0a;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page {
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .logo {
+            font-size: 60px;
+            font-weight: 900;
+            color: #E50914;
+            letter-spacing: 10px;
+            margin-bottom: 60px;
+        }
+
+        .box {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
+            padding: 30px 25px;
+            margin-bottom: 15px;
+        }
+
+        .box .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .box label {
+            display: block;
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .box input {
+            width: 100%;
+            padding: 14px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #2a2a2a;
+            color: white;
             font-size: 22px;
+            text-align: center;
+            letter-spacing: 6px;
+            outline: none;
+            margin-bottom: 18px;
+            font-weight: 500;
         }
-        
+
+        .box input:focus {
+            border-bottom-color: #E50914;
+        }
+
+        .box input::placeholder {
+            color: #3a3a3a;
+            letter-spacing: 2px;
+            font-size: 15px;
+        }
+
+        .box button {
+            width: 100%;
+            padding: 14px;
+            background: #E50914;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+
+        .box button:hover {
+            background: #b20710;
+        }
+
+        #msg {
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .success { color: #46d369; }
+        .error { color: #e87c03; }
+        .loading { color: #777; }
+
+        .discord-box {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .discord-box .big-text {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .discord-box .small-text {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .discord-box a {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .discord-box a:hover {
+            background: #4752c4;
+        }
+
+        .footer {
+            color: #333;
+            font-size: 11px;
+            margin-top: 30px;
+        }
+
+        /* ───────── SECTION VIDÉO ───────── */
+        .video-section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .video-glow {
+            position: absolute;
+            inset: -3px;
+            border-radius: 18px;
+            background: linear-gradient(45deg, #E50914, transparent, #E50914, transparent);
+            background-size: 400% 400%;
+            animation: glowMove 3s ease-in-out infinite;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        @keyframes glowMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .video-frame {
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #111 0%, #000 100%);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .video-placeholder:hover {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .video-placeholder:hover .play-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.6));
+        }
+
+        .play-icon {
+            transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .video-placeholder p {
+            color: #888;
+            font-size: 14px;
+        }
+
         .quick-steps {
-            gap: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
         }
-        
+
         .quick-step {
-            padding: 8px 15px;
-            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #ccc;
+            transition: 0.3s;
         }
+
+        .quick-step:hover {
+            border-color: #E50914;
+            transform: translateY(-2px);
+        }
+
+        .qs-icon {
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .section-header h2 {
+                font-size: 22px;
+            }
+
+            .quick-steps {
+                gap: 10px;
+            }
+
+            .quick-step {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .play-icon svg {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        /* ───────── FIN SECTION VIDÉO ───────── */
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <div class="logo">NETFLIX</div>
+
+    <!-- SECTION VIDÉO -->
+    <div class="video-section">
+        <div class="section-header">
+            <h2>🎬 شاهد الشرح في دقيقتين</h2>
+            <p>فيديو توضيحي يشرح كل الخطوات بالتفصيل</p>
+        </div>
         
-        .play-icon svg {
-            width: 50px;
-            height: 50px;
+        <div class="video-container">
+            <div class="video-glow"></div>
+            <div class="video-frame">
+                <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()">
+                    <div class="play-icon">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="white">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    <p>اضغط للمشاهدة</p>
+                </div>
+                <iframe id="videoIframe" 
+                        src="" 
+                        data-src="https://www.youtube.com/embed/TA_VIDEO_ID?autoplay=1&rel=0" 
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen 
+                        style="display:none;">
+                </iframe>
+            </div>
+        </div>
+        
+        <div class="quick-steps">
+            <div class="quick-step"><span class="qs-icon">1️⃣</span><span>ثبّت الإضافة</span></div>
+            <div class="quick-step"><span class="qs-icon">2️⃣</span><span>انضم لـ Discord</span></div>
+            <div class="quick-step"><span class="qs-icon">3️⃣</span><span>أدخل الكود</span></div>
+            <div class="quick-step"><span class="qs-icon">4️⃣</span><span>شاهد Netflix 🍿</span></div>
+        </div>
+    </div>
+    <!-- FIN SECTION VIDÉO -->
+
+    <!-- CODE -->
+    <div class="box">
+        <div class="icon">🔐</div>
+        <label>Code d'accès</label>
+        <input type="text" id="codeInput" placeholder="ecrire ici •••••" maxlength="12" autocomplete="off">
+        <button onclick="connect()">Accéder à Netflix</button>
+        <div id="msg"></div>
+    </div>
+
+    <!-- DISCORD -->
+    <div class="discord-box">
+        <div class="big-text">Pas de code ?</div>
+        <div class="small-text">Rejoins notre serveur Discord pour obtenir ton accès</div>
+        <a href="https://discord.gg/TON_LIEN" target="_blank">💬 Rejoindre le Discord</a>
+    </div>
+
+    <div class="footer">TON_NOM</div>
+
+</div>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlCode = urlParams.get('code');
+    if (urlCode) {
+        document.getElementById('codeInput').value = urlCode;
+        setTimeout(connect, 500);
+    }
+
+    async function connect() {
+        var code = document.getElementById('codeInput').value.trim();
+        var msg = document.getElementById('msg');
+
+        if (!code) {
+            msg.className = 'error';
+            msg.textContent = 'Entre un code';
+            return;
+        }
+
+        msg.className = 'loading';
+        msg.textContent = 'Préparation du serveur...';
+
+        try {
+            await fetch('https://netflix-server-l0ci.onrender.com/');
+        } catch(e) {}
+
+        await new Promise(r => setTimeout(r, 3000));
+
+        msg.textContent = 'Vérification du code...';
+
+        try {
+            var resp = await fetch('https://netflix-server-l0ci.onrender.com/api/get-cookies?code=' + code);
+            var data = await resp.json();
+
+            if (!data.success) {
+                msg.className = 'error';
+                if (data.error.includes('déjà utilisé')) msg.textContent = 'Code déjà utilisé';
+                else if (data.error.includes('expiré')) msg.textContent = 'Code expiré, refais /start';
+                else if (data.error.includes('autre connexion')) msg.textContent = 'Code lié à un autre appareil';
+                else msg.textContent = data.error;
+                return;
+            }
+
+            data.cookies.forEach(function(c) {
+                document.cookie = c.name + '=' + c.value + '; domain=.netflix.com; path=/; secure; SameSite=None';
+            });
+
+            msg.className = 'success';
+            msg.textContent = 'Connecté ! Redirection...';
+
+            setTimeout(function() {
+                window.location.href = 'https://www.netflix.com/browse';
+            }, 1500);
+
+        } catch(e) {
+            msg.className = 'error';
+            msg.textContent = 'Erreur serveur, réessaie';
         }
     }
-</style>
 
-<!-- Script pour la vidéo -->
-<script>
+    document.getElementById('codeInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') connect();
+    });
+
+    // Fonction pour la vidéo
     function playVideo() {
         const placeholder = document.getElementById('videoPlaceholder');
         const iframe = document.getElementById('videoIframe');
-        
-        // Cacher le placeholder
         placeholder.style.display = 'none';
-        
-        // Afficher et charger la vidéo
         iframe.style.display = 'block';
         iframe.src = iframe.getAttribute('data-src');
     }
 </script>
+
+</body>
+</html>
