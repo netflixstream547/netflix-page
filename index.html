@@ -28,8 +28,172 @@
             font-weight: 900;
             color: #E50914;
             letter-spacing: 10px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
+
+        /* ========== SECTION VIDÉO ATTRACTIVE ========== */
+        .video-section {
+            margin-bottom: 20px;
+        }
+
+        .video-header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .video-badge {
+            display: inline-block;
+            background: rgba(229, 9, 20, 0.15);
+            color: #E50914;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            border-radius: 50px;
+            padding: 5px 15px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4); }
+            50% { box-shadow: 0 0 15px 5px rgba(229, 9, 20, 0.1); }
+        }
+
+        .video-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .video-header p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .video-player {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 15px;
+        }
+
+        .player-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: 14px;
+            background: conic-gradient(from 0deg, #E50914, transparent, #E50914, transparent);
+            animation: glowSpin 4s linear infinite;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        @keyframes glowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .player-frame {
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16/9;
+            border-radius: 11px;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .player-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        .play-overlay:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .play-circle {
+            width: 65px;
+            height: 65px;
+            background: #E50914;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+        }
+
+        .play-overlay:hover .play-circle {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(229, 9, 20, 0.9);
+        }
+
+        .play-circle svg {
+            width: 30px;
+            height: 30px;
+            margin-left: 4px;
+        }
+
+        .play-overlay span {
+            color: #ccc;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .mini-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mini-step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .mini-step:hover {
+            border-color: #E50914;
+            transform: translateY(-2px);
+        }
+
+        .step-emoji {
+            font-size: 16px;
+        }
+
+        .arrow {
+            color: #E50914;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        /* ========== FIN SECTION VIDÉO ========== */
 
         .box {
             background: #111111;
@@ -145,152 +309,6 @@
             font-size: 11px;
             margin-top: 30px;
         }
-
-        /* ───────── SECTION VIDÉO ───────── */
-        .video-section {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-header h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .section-header p {
-            color: #888;
-            font-size: 16px;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #0a0a0a;
-        }
-
-        .video-glow {
-            position: absolute;
-            inset: -3px;
-            border-radius: 18px;
-            background: linear-gradient(45deg, #E50914, transparent, #E50914, transparent);
-            background-size: 400% 400%;
-            animation: glowMove 3s ease-in-out infinite;
-            z-index: 0;
-            opacity: 0.5;
-        }
-
-        @keyframes glowMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .video-frame {
-            position: relative;
-            z-index: 1;
-            aspect-ratio: 16/9;
-            background: #000;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .video-frame iframe {
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(180deg, #111 0%, #000 100%);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .video-placeholder:hover {
-            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
-        }
-
-        .video-placeholder:hover .play-icon {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.6));
-        }
-
-        .play-icon {
-            transition: 0.3s;
-            margin-bottom: 15px;
-        }
-
-        .video-placeholder p {
-            color: #888;
-            font-size: 14px;
-        }
-
-        .quick-steps {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-
-        .quick-step {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 50px;
-            padding: 10px 20px;
-            font-size: 14px;
-            color: #ccc;
-            transition: 0.3s;
-        }
-
-        .quick-step:hover {
-            border-color: #E50914;
-            transform: translateY(-2px);
-        }
-
-        .qs-icon {
-            font-size: 18px;
-        }
-
-        @media (max-width: 600px) {
-            .section-header h2 {
-                font-size: 22px;
-            }
-
-            .quick-steps {
-                gap: 10px;
-            }
-
-            .quick-step {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-
-            .play-icon svg {
-                width: 50px;
-                height: 50px;
-            }
-        }
-        /* ───────── FIN SECTION VIDÉO ───────── */
     </style>
 </head>
 <body>
@@ -299,40 +317,43 @@
 
     <div class="logo">NETFLIX</div>
 
-    <!-- SECTION VIDÉO -->
+    <!-- SECTION VIDÉO ATTRACTIVE -->
     <div class="video-section">
-        <div class="section-header">
-            <h2>🎬 شاهد الشرح في دقيقتين</h2>
-            <p>فيديو توضيحي يشرح كل الخطوات بالتفصيل</p>
+        <div class="video-header">
+            <span class="video-badge">🎬 TUTORIEL</span>
+            <h2>Comment ça marche ?</h2>
+            <p>Regarde cette courte vidéo pour tout comprendre en 2 minutes</p>
         </div>
-        
-        <div class="video-container">
-            <div class="video-glow"></div>
-            <div class="video-frame">
-                <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()">
-                    <div class="play-icon">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="white">
+
+        <div class="video-player">
+            <div class="player-glow"></div>
+            <div class="player-frame">
+                <div class="play-overlay" id="playOverlay" onclick="playVideo()">
+                    <div class="play-circle">
+                        <svg viewBox="0 0 24 24" fill="white">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
                     </div>
-                    <p>اضغط للمشاهدة</p>
+                    <span>Voir le tutoriel</span>
                 </div>
-                <iframe id="videoIframe" 
-                        src="" 
-                        data-src="https://www.youtube.com/embed/TA_VIDEO_ID?autoplay=1&rel=0" 
-                        frameborder="0" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen 
-                        style="display:none;">
+                <iframe id="tutoVideo"
+                        src=""
+                        data-src="https://www.youtube.com/embed/TA_VIDEO_ID?autoplay=1&rel=0&modestbranding=1"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allowfullscreen>
                 </iframe>
             </div>
         </div>
-        
-        <div class="quick-steps">
-            <div class="quick-step"><span class="qs-icon">1️⃣</span><span>ثبّت الإضافة</span></div>
-            <div class="quick-step"><span class="qs-icon">2️⃣</span><span>انضم لـ Discord</span></div>
-            <div class="quick-step"><span class="qs-icon">3️⃣</span><span>أدخل الكود</span></div>
-            <div class="quick-step"><span class="qs-icon">4️⃣</span><span>شاهد Netflix 🍿</span></div>
+
+        <div class="mini-steps">
+            <div class="mini-step"><span class="step-emoji">📥</span><span>Télécharge</span></div>
+            <div class="arrow">→</div>
+            <div class="mini-step"><span class="step-emoji">🔧</span><span>Installe</span></div>
+            <div class="arrow">→</div>
+            <div class="mini-step"><span class="step-emoji">💬</span><span>Rejoins Discord</span></div>
+            <div class="arrow">→</div>
+            <div class="mini-step"><span class="step-emoji">🍿</span><span>Netflix !</span></div>
         </div>
     </div>
     <!-- FIN SECTION VIDÉO -->
@@ -358,6 +379,13 @@
 </div>
 
 <script>
+    function playVideo() {
+        const overlay = document.getElementById('playOverlay');
+        const iframe = document.getElementById('tutoVideo');
+        overlay.style.display = 'none';
+        iframe.src = iframe.getAttribute('data-src');
+    }
+
     var urlParams = new URLSearchParams(window.location.search);
     var urlCode = urlParams.get('code');
     if (urlCode) {
@@ -419,15 +447,6 @@
     document.getElementById('codeInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') connect();
     });
-
-    // Fonction pour la vidéo
-    function playVideo() {
-        const placeholder = document.getElementById('videoPlaceholder');
-        const iframe = document.getElementById('videoIframe');
-        placeholder.style.display = 'none';
-        iframe.style.display = 'block';
-        iframe.src = iframe.getAttribute('data-src');
-    }
 </script>
 
 </body>
