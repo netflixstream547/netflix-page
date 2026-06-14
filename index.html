@@ -1,253 +1,220 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Access Hub</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+<!-- SECTION VIDÉO -->
+<section class="video-section">
+    <div class="section-header">
+        <h2>🎬 شاهد الشرح في دقيقتين</h2>
+        <p>فيديو توضيحي يشرح كل الخطوات بالتفصيل</p>
+    </div>
+    
+    <div class="video-container">
+        <!-- Bordure lumineuse animée -->
+        <div class="video-glow"></div>
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: #0a0a0a;
-            font-family: 'Cairo', sans-serif;
-            color: white;
-            line-height: 1.6;
+        <!-- Cadre vidéo -->
+        <div class="video-frame">
+            <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()">
+                <div class="play-icon">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+                <p>اضغط للمشاهدة</p>
+            </div>
+            
+            <!-- remplacer VIDEO_ID par ta vraie vidéo -->
+            <iframe id="videoIframe" 
+                    src="" 
+                    data-src="https://www.youtube.com/embed/TA_VIDEO_ID?autoplay=1&rel=0" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen 
+                    style="display:none;">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- Mini-étapes rapides sous la vidéo -->
+    <div class="quick-steps">
+        <div class="quick-step">
+            <span class="qs-icon">1️⃣</span>
+            <span>ثبّت الإضافة</span>
+        </div>
+        <div class="quick-step">
+            <span class="qs-icon">2️⃣</span>
+            <span>انضم لـ Discord</span>
+        </div>
+        <div class="quick-step">
+            <span class="qs-icon">3️⃣</span>
+            <span>أدخل الكود</span>
+        </div>
+        <div class="quick-step">
+            <span class="qs-icon">4️⃣</span>
+            <span>شاهد Netflix 🍿</span>
+        </div>
+    </div>
+</section>
+
+<!-- CSS pour la section vidéo -->
+<style>
+    .video-section {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+    }
+    
+    .section-header p {
+        color: #888;
+        font-size: 16px;
+    }
+    
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #0a0a0a;
+    }
+    
+    /* Effet de lueur animée autour de la vidéo */
+    .video-glow {
+        position: absolute;
+        inset: -3px;
+        border-radius: 18px;
+        background: linear-gradient(45deg, #E50914, transparent, #E50914, transparent);
+        background-size: 400% 400%;
+        animation: glowMove 3s ease-in-out infinite;
+        z-index: 0;
+        opacity: 0.5;
+    }
+    
+    @keyframes glowMove {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    .video-frame {
+        position: relative;
+        z-index: 1;
+        aspect-ratio: 16/9;
+        background: #000;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    
+    .video-frame iframe {
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Placeholder avec bouton play */
+    .video-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, #111 0%, #000 100%);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .video-placeholder:hover {
+        background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    
+    .video-placeholder:hover .play-icon {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.6));
+    }
+    
+    .play-icon {
+        transition: 0.3s;
+        margin-bottom: 15px;
+    }
+    
+    .video-placeholder p {
+        color: #888;
+        font-size: 14px;
+    }
+    
+    /* Étapes rapides */
+    .quick-steps {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+    
+    .quick-step {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #ccc;
+        transition: 0.3s;
+    }
+    
+    .quick-step:hover {
+        border-color: #E50914;
+        transform: translateY(-2px);
+    }
+    
+    .qs-icon {
+        font-size: 18px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+        .section-header h2 {
+            font-size: 22px;
         }
         
-        /* ---------- HERO ---------- */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .hero-logo {
-            font-size: 70px;
-            font-weight: 900;
-            color: #E50914;
-            letter-spacing: 12px;
-            margin-bottom: 15px;
-        }
-        .hero h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .hero h1 span {
-            color: #E50914;
-        }
-        .hero p {
-            color: #aaa;
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        .btn {
-            display: inline-block;
-            background: #E50914;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            transition: 0.3s;
-            margin: 8px;
-        }
-        .btn:hover {
-            background: #b20710;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(229,9,20,0.4);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #5865F2;
-            color: #5865F2;
-        }
-        .btn-outline:hover {
-            background: #5865F2;
-            color: white;
+        .quick-steps {
+            gap: 10px;
         }
         
-        /* ---------- STEPS ---------- */
-        .section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        .quick-step {
+            padding: 8px 15px;
+            font-size: 12px;
         }
-        .section h2 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 50px;
-        }
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .step {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .step:hover {
-            border-color: #E50914;
-            transform: translateY(-5px);
-        }
-        .step-number {
+        
+        .play-icon svg {
             width: 50px;
             height: 50px;
-            background: #E50914;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 900;
-            margin: 0 auto 15px;
         }
-        .step h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .step p {
-            color: #aaa;
-            font-size: 14px;
-        }
-        
-        /* ---------- DOWNLOAD ---------- */
-        .download-box {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .download-box h3 {
-            margin-bottom: 20px;
-        }
-        .download-box .btn {
-            display: block;
-            margin: 10px 0;
-        }
-        
-        /* ---------- FAQ ---------- */
-        .faq-item {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-        .faq-item h3 {
-            color: #E50914;
-            margin-bottom: 8px;
-            font-size: 17px;
-        }
-        .faq-item p {
-            color: #aaa;
-            font-size: 14px;
-        }
-        
-        /* ---------- FOOTER ---------- */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            font-size: 13px;
-            border-top: 1px solid #1a1a1a;
-        }
-        
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 600px) {
-            .hero-logo { font-size: 45px; letter-spacing: 6px; }
-            .hero h1 { font-size: 24px; }
-            .btn { padding: 12px 30px; font-size: 15px; }
-        }
-    </style>
-</head>
-<body>
+    }
+</style>
 
-<!-- HERO -->
-<header class="hero">
-    <div class="hero-logo">NETFLIX</div>
-    <h1>مرحباً بك في <span>Premium Zone</span></h1>
-    <p>أسرع وأسهل طريقة للوصول إلى حساب Netflix الخاص بك. قم بتثبيت الإضافة مرة واحدة واستمتع بالمشاهدة بنقرة واحدة.</p>
-    <a href="#download" class="btn">📥 تحميل الإضافة</a>
-    <a href="https://discord.gg/TON_LIEN" class="btn btn-outline">💬 انضم إلى Discord</a>
-</header>
-
-<!-- STEPS -->
-<section class="section">
-    <h2>🎬 كيف تبدأ في 3 خطوات</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <h3>ثبّت الإضافة</h3>
-            <p>حمّل الإضافة من الأسفل وثبتها على متصفح Chrome أو Edge بنقرتين فقط.</p>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <h3>استلم الكود</h3>
-            <p>انضم إلى سيرفر Discord واحصل على كود الدخول الخاص بك.</p>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <h3>شاهد Netflix</h3>
-            <p>الصق الكود في الإضافة واستمتع بالمشاهدة فوراً.</p>
-        </div>
-    </div>
-</section>
-
-<!-- DOWNLOAD -->
-<section class="section" id="download">
-    <h2>📥 تحميل الإضافة</h2>
-    <div class="download-box">
-        <h3>Netflix Auto Connect</h3>
-        <p style="color:#aaa; margin-bottom:20px;">اختر نسخة المتصفح الخاص بك</p>
+<!-- Script pour la vidéo -->
+<script>
+    function playVideo() {
+        const placeholder = document.getElementById('videoPlaceholder');
+        const iframe = document.getElementById('videoIframe');
         
-        <a href="https://drive.google.com/file/d/XXXXXXXXX/view?usp=sharing" class="btn">🔵 Chrome / Edge (ZIP)</a>
-        <a href="https://drive.google.com/file/d/XXXXXXXXX/view?usp=sharing" class="btn" style="background:#FF6600;">🦊 Firefox (bientôt)</a>
+        // Cacher le placeholder
+        placeholder.style.display = 'none';
         
-        <p style="color:#888; font-size:12px; margin-top:15px;">
-            بعد التحميل، افتح <code>chrome://extensions</code> وفعّل "وضع المطور" ثم اختر "تحميل إضافة غير مضغوطة".
-        </p>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="section">
-    <h2>❓ أسئلة شائعة</h2>
-    <div class="faq-item">
-        <h3>هل الإضافة آمنة؟</h3>
-        <p>نعم، الإضافة لا تجمع أي بيانات شخصية وتعمل محلياً على جهازك فقط.</p>
-    </div>
-    <div class="faq-item">
-        <h3>كم يستمر الكود؟</h3>
-        <p>الكود صالح لمدة 10 دقائق للاستخدام لمرة واحدة فقط.</p>
-    </div>
-    <div class="faq-item">
-        <h3>كيف أحصل على الكود؟</h3>
-        <p>انضم إلى سيرفر Discord وتواصل مع الإدارة للحصول على كود الدخول.</p>
-    </div>
-    <div class="faq-item">
-        <h3>هل يمكنني استخدام الإضافة على هاتفي؟</h3>
-        <p>لا، الإضافة مخصصة لمتصفحات Chrome و Edge على الكمبيوتر فقط.</p>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 <strong>Premium Zone</strong> — جميع الحقوق محفوظة.</p>
-    <p>تم التطوير بواسطة <strong style="color:#E50914;">ShadowDev</strong></p>
-</footer>
-
-</body>
-</html>
+        // Afficher et charger la vidéo
+        iframe.style.display = 'block';
+        iframe.src = iframe.getAttribute('data-src');
+    }
+</script>
